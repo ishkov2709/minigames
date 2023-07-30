@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ishkov2709/minigames/static/css/main.a7805212.css",
+    "main.js": "/ishkov2709/minigames/static/js/main.e99cb6b6.js",
+    "index.html": "/ishkov2709/minigames/index.html",
+    "main.a7805212.css.map": "/ishkov2709/minigames/static/css/main.a7805212.css.map",
+    "main.e99cb6b6.js.map": "/ishkov2709/minigames/static/js/main.e99cb6b6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a7805212.css",
+    "static/js/main.e99cb6b6.js"
+  ]
+}
