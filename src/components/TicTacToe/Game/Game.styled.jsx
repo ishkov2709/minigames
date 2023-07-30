@@ -32,11 +32,16 @@ export const WinText = styled(Typography)`
   text-transform: capitalize;
 `;
 
-export const BtnRetry = styled(Button)`
+export const BtnBox = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+`;
+
+export const BtnEnd = styled(Button)`
   display: flex;
   align-items: center;
   gap: 4px;
-  margin: 0 auto;
 
   background-color: #8512d1;
 

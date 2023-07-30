@@ -1,13 +1,24 @@
 import * as Styled from './Game.styled';
 import Btn from './Btn';
 import { useEffect } from 'react';
-import { PiArrowClockwiseBold } from 'react-icons/pi';
+import { PiArrowClockwiseBold, PiArrowBendUpLeftBold } from 'react-icons/pi';
 import { Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { makeWinner, retry } from '../../../redux/ticTacToe/ticTacToeSlice';
+import {
+  makeWinner,
+  reset,
+  retry,
+} from '../../../redux/ticTacToe/ticTacToeSlice';
+import {
+  BsEmojiNeutral,
+  BsEmojiSunglasses,
+  BsEmojiFrown,
+} from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 
 const Game = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const variant = useSelector(state => state.variant);
   const ARRAY_FIELD = useSelector(state => state.ARRAY_FIELD);
   const exceptions = useSelector(state => state.exceptions);
@@ -142,6 +153,11 @@ const Game = () => {
     dispatch(retry());
   };
 
+  const handleBack = () => {
+    navigate('/');
+    dispatch(reset());
+  };
+
   if (!endGame)
     return (
       <Styled.Section>
@@ -157,23 +173,42 @@ const Game = () => {
     return (
       <Styled.Section>
         <Styled.WinText variant="h2" component="h2">
-          {endGame === 'draw' ? 'draw' : `${endGame} Win!`}
+          {endGame === 'draw'
+            ? 'draw...'
+            : endGame === variant
+            ? 'You Win!'
+            : 'You Lose!'}
+          {endGame === 'draw' ? (
+            <BsEmojiNeutral />
+          ) : endGame === variant ? (
+            <BsEmojiSunglasses />
+          ) : (
+            <BsEmojiFrown />
+          )}
         </Styled.WinText>
 
-        <Styled.BtnRetry
-          variant="contained"
-          type="button"
-          onClick={hanldeRetry}
-        >
-          <Typography variant="span" component="span">
-            Retry
-          </Typography>
-          <PiArrowClockwiseBold
-            className="retry-icon"
-            size={16}
-            style={{ transform: 'rotate(45deg)' }}
-          />
-        </Styled.BtnRetry>
+        <Styled.BtnBox>
+          <Styled.BtnEnd variant="contained" type="button" onClick={handleBack}>
+            <Typography variant="span" component="span">
+              Back
+            </Typography>
+            <PiArrowBendUpLeftBold size={16} />
+          </Styled.BtnEnd>
+          <Styled.BtnEnd
+            variant="contained"
+            type="button"
+            onClick={hanldeRetry}
+          >
+            <Typography variant="span" component="span">
+              Retry
+            </Typography>
+            <PiArrowClockwiseBold
+              className="retry-icon"
+              size={16}
+              style={{ transform: 'rotate(45deg)' }}
+            />
+          </Styled.BtnEnd>
+        </Styled.BtnBox>
       </Styled.Section>
     );
 };

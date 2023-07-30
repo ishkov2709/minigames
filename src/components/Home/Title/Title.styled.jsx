@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 
 export const MainTitle = styled(Typography)`
   display: block;
-  width: 512px;
+  width: 514px;
 
   margin: 0 auto;
 
