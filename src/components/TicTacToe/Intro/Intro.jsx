@@ -1,6 +1,6 @@
 import { ImCross } from 'react-icons/im';
 import { FiCircle } from 'react-icons/fi';
-import * as Styled from './Intro.styled';
+import { Btn, Section, Wrapper } from './Intro.styled';
 import { useDispatch } from 'react-redux';
 import { selectVariant } from '../../../store/ticTacToe/ticTacToeSlice';
 
@@ -12,9 +12,9 @@ const Intro = () => {
   };
 
   return (
-    <Styled.Section>
-      <Styled.Wrapper>
-        <Styled.Btn type="button" name="cross" onClick={handleVariant}>
+    <Section>
+      <Wrapper>
+        <Btn type="button" name="cross" onClick={handleVariant}>
           <ImCross
             size={120}
             color="#992323"
@@ -23,8 +23,8 @@ const Intro = () => {
               transition: 'transform 250ms linear',
             }}
           />
-        </Styled.Btn>
-        <Styled.Btn type="button" name="circle" onClick={handleVariant}>
+        </Btn>
+        <Btn type="button" name="circle" onClick={handleVariant}>
           <FiCircle
             size={120}
             color="#2e972b"
@@ -33,9 +33,9 @@ const Intro = () => {
               transition: 'transform 250ms linear',
             }}
           />
-        </Styled.Btn>
-      </Styled.Wrapper>
-    </Styled.Section>
+        </Btn>
+      </Wrapper>
+    </Section>
   );
 };
 export default Intro;

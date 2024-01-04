@@ -3,6 +3,7 @@ import { ImCross } from 'react-icons/im';
 import { FiCircle } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  makeWinner,
   selectPlayerTick,
   setTickStatus,
 } from '../../../../store/ticTacToe/ticTacToeSlice';
@@ -16,6 +17,7 @@ const Btn = ({ id }) => {
   const handleTick = () => {
     dispatch(selectPlayerTick(id));
     dispatch(setTickStatus(true));
+    dispatch(makeWinner(null));
   };
 
   return (

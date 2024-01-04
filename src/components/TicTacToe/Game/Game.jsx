@@ -29,7 +29,6 @@ const Game = () => {
   const opponentChoise = useSelector(state => state.opponentChoise);
   const endGame = useSelector(state => state.endGame);
   const tickStatus = useSelector(state => state.tickStatus);
-
   useEffect(() => {
     if (exceptions.length === 9 && !endGame) {
       dispatch(makeWinner('draw'));
@@ -67,6 +66,8 @@ const Game = () => {
         playerChoise.includes(8))
     ) {
       dispatch(makeWinner(variant));
+    } else {
+      dispatch(makeWinner('none'));
     }
   }, [playerChoise, variant, dispatch]);
 
@@ -98,11 +99,13 @@ const Game = () => {
         opponentChoise.includes(8))
     ) {
       dispatch(makeWinner(variant === 'cross' ? 'circle' : 'cross'));
+    } else {
+      dispatch(makeWinner('none'));
     }
   }, [opponentChoise, variant, dispatch]);
 
   useEffect(() => {
-    if (tickStatus && !endGame) {
+    if (tickStatus && endGame === 'none') {
       dispatch(setTickStatus(false));
       const position = randomizer(ARRAY_FIELD, exceptions);
       setTimeout(() => {
@@ -120,7 +123,7 @@ const Game = () => {
     dispatch(reset());
   };
 
-  if (!endGame)
+  if (endGame === 'none' || endGame === null)
     return (
       <Section>
         <PlayingField>
@@ -131,7 +134,7 @@ const Game = () => {
       </Section>
     );
 
-  if (endGame)
+  if (endGame !== 'none' && endGame !== null)
     return (
       <Section>
         <WinText variant="h2" component="h2">
