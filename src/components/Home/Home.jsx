@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import * as Styled from './Home.styled';
 import Title from './Title';
 import {
   Card,
@@ -8,15 +7,16 @@ import {
   CardMedia,
   Typography,
 } from '@mui/material';
+import { Header, List } from './Home.styled';
 
 const Home = () => {
   return (
     <>
-      <Styled.Header>
+      <Header>
         <Title title="Mini Games" />
-      </Styled.Header>
+      </Header>
       <section>
-        <Styled.List>
+        <List>
           <li>
             <Link style={{ textDecoration: 'none' }} to="tictactoe">
               <Card
@@ -53,7 +53,7 @@ const Home = () => {
               </Card>
             </Link>
           </li>
-        </Styled.List>
+        </List>
       </section>
     </>
   );

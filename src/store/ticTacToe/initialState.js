@@ -5,6 +5,7 @@ const initialState = {
   playerChoise: [],
   opponentChoise: [],
   endGame: null,
+  tickStatus: false,
 };
 
 export default initialState;

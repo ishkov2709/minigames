@@ -2,7 +2,7 @@ import { ImCross } from 'react-icons/im';
 import { FiCircle } from 'react-icons/fi';
 import * as Styled from './Intro.styled';
 import { useDispatch } from 'react-redux';
-import { selectVariant } from '../../../redux/ticTacToe/ticTacToeSlice';
+import { selectVariant } from '../../../store/ticTacToe/ticTacToeSlice';
 
 const Intro = () => {
   const dispatch = useDispatch();

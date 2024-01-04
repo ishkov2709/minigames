@@ -19,11 +19,15 @@ const ticTacToeSlice = createSlice({
     makeWinner: (state, { payload }) => {
       state.endGame = payload;
     },
+    setTickStatus: (state, { payload }) => {
+      state.tickStatus = payload;
+    },
     retry: state => {
       state.exceptions = [];
       state.playerChoise = [];
       state.opponentChoise = [];
       state.endGame = null;
+      state.tickStatus = false;
     },
     reset: state => {
       state.variant = null;
@@ -31,6 +35,7 @@ const ticTacToeSlice = createSlice({
       state.playerChoise = [];
       state.opponentChoise = [];
       state.endGame = null;
+      state.tickStatus = false;
     },
   },
 });
@@ -42,6 +47,7 @@ export const {
   selectPlayerTick,
   selectOpponentTick,
   makeWinner,
+  setTickStatus,
   retry,
   reset,
 } = ticTacToeSlice.actions;

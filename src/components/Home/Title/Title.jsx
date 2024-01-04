@@ -1,4 +1,4 @@
-import * as Styled from './Title.styled';
+import { MainTitle, Span } from './Title.styled';
 
 const Title = ({ title }) => {
   const handleClick = ({ target }) => {
@@ -10,13 +10,13 @@ const Title = ({ title }) => {
   return (
     <>
       {title && (
-        <Styled.MainTitle variant="h1" component="h1" fontSize={52}>
+        <MainTitle variant="h1" component="h1" fontSize={52}>
           {title.split('').map((el, i) => (
-            <Styled.Span key={i} onClick={handleClick}>
+            <Span key={i} onClick={handleClick}>
               {el}
-            </Styled.Span>
+            </Span>
           ))}
-        </Styled.MainTitle>
+        </MainTitle>
       )}
     </>
   );
