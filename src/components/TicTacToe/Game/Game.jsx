@@ -29,11 +29,6 @@ const Game = () => {
   const opponentChoise = useSelector(state => state.opponentChoise);
   const endGame = useSelector(state => state.endGame);
   const tickStatus = useSelector(state => state.tickStatus);
-  useEffect(() => {
-    if (exceptions.length === 9 && !endGame) {
-      dispatch(makeWinner('draw'));
-    }
-  }, [exceptions, endGame, dispatch]);
 
   useEffect(() => {
     if (
@@ -66,13 +61,7 @@ const Game = () => {
         playerChoise.includes(8))
     ) {
       dispatch(makeWinner(variant));
-    } else {
-      dispatch(makeWinner('none'));
-    }
-  }, [playerChoise, variant, dispatch]);
-
-  useEffect(() => {
-    if (
+    } else if (
       (opponentChoise.includes(0) &&
         opponentChoise.includes(1) &&
         opponentChoise.includes(2)) ||
@@ -100,9 +89,9 @@ const Game = () => {
     ) {
       dispatch(makeWinner(variant === 'cross' ? 'circle' : 'cross'));
     } else {
-      dispatch(makeWinner('none'));
+      dispatch(makeWinner(exceptions.length === 9 ? 'draw' : 'none'));
     }
-  }, [opponentChoise, variant, dispatch]);
+  }, [playerChoise, opponentChoise, variant, dispatch, exceptions]);
 
   useEffect(() => {
     if (tickStatus && endGame === 'none') {
