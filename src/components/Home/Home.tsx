@@ -15,9 +15,9 @@ const Home = () => {
       <Header>
         <Title title="Mini Games" />
       </Header>
-      <section>
+      <main>
         <List>
-          <li>
+          <li style={{ outline: '1px solid tomato' }}>
             <Link style={{ textDecoration: 'none' }} to="tictactoe">
               <Card
                 sx={{
@@ -53,8 +53,44 @@ const Home = () => {
               </Card>
             </Link>
           </li>
+          <li style={{ outline: '1px solid tomato' }}>
+            <Link style={{ textDecoration: 'none' }} to="hangman">
+              <Card
+                sx={{
+                  maxWidth: 280,
+                  background:
+                    'linear-gradient(0deg, rgba(253, 246, 230, 0.3), rgba(253, 246, 230, 0.3))',
+                }}
+              >
+                <CardActionArea sx={{ padding: '20px 20px 0 20px' }}>
+                  <CardMedia
+                    component="img"
+                    width="150"
+                    image="https://cdn-icons-png.flaticon.com/256/3401/3401289.png"
+                    alt="Tic-Tac-Toe"
+                  />
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="div"
+                      margin="0"
+                      fontSize={32}
+                      sx={{
+                        textAlign: 'center',
+                        fontWeight: '500',
+                        color: '#252525',
+                      }}
+                    >
+                      Hangman
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Link>
+          </li>
         </List>
-      </section>
+      </main>
     </>
   );
 };
