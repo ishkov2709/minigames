@@ -1,10 +1,10 @@
 import Intro from './Intro';
 import Game from './Game';
 import { useSelector } from 'react-redux';
-import { InitialStateType } from '../../store/ticTacToe/initialState';
+import { RootState } from '../../store/store';
 
 const TicTacToe = () => {
-  const variant = useSelector((state: InitialStateType) => state.variant);
+  const variant = useSelector((state: RootState) => state.variant);
 
   return (
     <>

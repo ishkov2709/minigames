@@ -18,24 +18,20 @@ import {
 } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import randomizer from '../../../utils/randomizer';
-import { InitialStateType } from '../../../store/ticTacToe/initialState';
+import { RootState } from '../../../store/store';
 
 const Game = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const variant = useSelector((state: InitialStateType) => state.variant);
-  const ARRAY_FIELD = useSelector(
-    (state: InitialStateType) => state.ARRAY_FIELD
-  );
-  const exceptions = useSelector((state: InitialStateType) => state.exceptions);
-  const playerChoise = useSelector(
-    (state: InitialStateType) => state.playerChoise
-  );
+  const variant = useSelector((state: RootState) => state.variant);
+  const ARRAY_FIELD = useSelector((state: RootState) => state.ARRAY_FIELD);
+  const exceptions = useSelector((state: RootState) => state.exceptions);
+  const playerChoise = useSelector((state: RootState) => state.playerChoise);
   const opponentChoise = useSelector(
-    (state: InitialStateType) => state.opponentChoise
+    (state: RootState) => state.opponentChoise
   );
-  const endGame = useSelector((state: InitialStateType) => state.endGame);
-  const tickStatus = useSelector((state: InitialStateType) => state.tickStatus);
+  const endGame = useSelector((state: RootState) => state.endGame);
+  const tickStatus = useSelector((state: RootState) => state.tickStatus);
 
   useEffect(() => {
     if (

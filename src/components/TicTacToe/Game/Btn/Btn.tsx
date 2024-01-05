@@ -7,7 +7,7 @@ import {
   selectPlayerTick,
   setTickStatus,
 } from '../../../../store/ticTacToe/ticTacToeSlice';
-import { InitialStateType } from '../../../../store/ticTacToe/initialState';
+import { RootState } from '../../../../store/store';
 
 type BtnProps = {
   id: number;
@@ -15,10 +15,10 @@ type BtnProps = {
 
 const Btn = ({ id }: BtnProps) => {
   const dispatch = useDispatch();
-  const variant = useSelector((state: InitialStateType) => state.variant);
-  const exceptions = useSelector((state: InitialStateType) => state.exceptions);
+  const variant = useSelector((state: RootState) => state.variant);
+  const exceptions = useSelector((state: RootState) => state.exceptions);
   const opponentChoise = useSelector(
-    (state: InitialStateType) => state.opponentChoise
+    (state: RootState) => state.opponentChoise
   );
 
   const handleTick = (): void => {
