@@ -18,6 +18,10 @@ code {
     monospace;
 }
 
+button {
+  cursor: pointer;
+}
+
 /* Keyframes */
 
 @keyframes animationColor {

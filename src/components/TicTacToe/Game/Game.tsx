@@ -18,17 +18,24 @@ import {
 } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import randomizer from '../../../utils/randomizer';
+import { InitialStateType } from '../../../store/ticTacToe/initialState';
 
 const Game = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const variant = useSelector(state => state.variant);
-  const ARRAY_FIELD = useSelector(state => state.ARRAY_FIELD);
-  const exceptions = useSelector(state => state.exceptions);
-  const playerChoise = useSelector(state => state.playerChoise);
-  const opponentChoise = useSelector(state => state.opponentChoise);
-  const endGame = useSelector(state => state.endGame);
-  const tickStatus = useSelector(state => state.tickStatus);
+  const variant = useSelector((state: InitialStateType) => state.variant);
+  const ARRAY_FIELD = useSelector(
+    (state: InitialStateType) => state.ARRAY_FIELD
+  );
+  const exceptions = useSelector((state: InitialStateType) => state.exceptions);
+  const playerChoise = useSelector(
+    (state: InitialStateType) => state.playerChoise
+  );
+  const opponentChoise = useSelector(
+    (state: InitialStateType) => state.opponentChoise
+  );
+  const endGame = useSelector((state: InitialStateType) => state.endGame);
+  const tickStatus = useSelector((state: InitialStateType) => state.tickStatus);
 
   useEffect(() => {
     if (
@@ -103,11 +110,11 @@ const Game = () => {
     }
   }, [tickStatus, endGame, ARRAY_FIELD, dispatch, exceptions]);
 
-  const hanldeRetry = () => {
+  const hanldeRetry = (): void => {
     dispatch(retry());
   };
 
-  const handleBack = () => {
+  const handleBack = (): void => {
     navigate('/');
     dispatch(reset());
   };
@@ -123,10 +130,10 @@ const Game = () => {
       </Section>
     );
 
-  if (endGame !== 'none' && endGame !== null)
+  if (endGame !== null)
     return (
       <Section>
-        <WinText variant="h2" component="h2">
+        <WinText variant="h2">
           {endGame === 'draw'
             ? 'draw...'
             : endGame === variant
@@ -143,15 +150,11 @@ const Game = () => {
 
         <BtnBox>
           <BtnEnd variant="contained" type="button" onClick={handleBack}>
-            <Typography variant="span" component="span">
-              Back
-            </Typography>
+            <Typography component="span">Back</Typography>
             <PiArrowBendUpLeftBold size={16} />
           </BtnEnd>
           <BtnEnd variant="contained" type="button" onClick={hanldeRetry}>
-            <Typography variant="span" component="span">
-              Retry
-            </Typography>
+            <Typography component="span">Retry</Typography>
             <PiArrowClockwiseBold
               className="retry-icon"
               size={16}

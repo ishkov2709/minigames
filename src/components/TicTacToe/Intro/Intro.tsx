@@ -3,12 +3,15 @@ import { FiCircle } from 'react-icons/fi';
 import { Btn, Section, Wrapper } from './Intro.styled';
 import { useDispatch } from 'react-redux';
 import { selectVariant } from '../../../store/ticTacToe/ticTacToeSlice';
+import { MouseEvent } from 'react';
 
 const Intro = () => {
   const dispatch = useDispatch();
 
-  const handleVariant = ({ target }) => {
-    dispatch(selectVariant(target.closest('button').name));
+  const handleVariant = ({
+    currentTarget,
+  }: MouseEvent<HTMLButtonElement>): void => {
+    dispatch(selectVariant(currentTarget.name));
   };
 
   return (
