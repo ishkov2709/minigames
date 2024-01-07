@@ -5,17 +5,21 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
+  Container,
   Typography,
 } from '@mui/material';
 import { Header, List } from './Home.styled';
+import GameWrapper from '../common/GameWrapper';
 
 const Home = () => {
   return (
     <>
       <Header>
-        <Title title="Mini Games" />
+        <Container>
+          <Title title="Mini Games" />
+        </Container>
       </Header>
-      <main>
+      <GameWrapper>
         <List>
           <li style={{ outline: '1px solid tomato' }}>
             <Link style={{ textDecoration: 'none' }} to="tictactoe">
@@ -90,7 +94,7 @@ const Home = () => {
             </Link>
           </li>
         </List>
-      </main>
+      </GameWrapper>
     </>
   );
 };

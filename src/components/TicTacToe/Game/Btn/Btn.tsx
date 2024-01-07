@@ -15,10 +15,12 @@ type BtnProps = {
 
 const Btn = ({ id }: BtnProps) => {
   const dispatch = useDispatch();
-  const variant = useSelector((state: RootState) => state.variant);
-  const exceptions = useSelector((state: RootState) => state.exceptions);
+  const variant = useSelector((state: RootState) => state.ticTacToe.variant);
+  const exceptions = useSelector(
+    (state: RootState) => state.ticTacToe.exceptions
+  );
   const opponentChoise = useSelector(
-    (state: RootState) => state.opponentChoise
+    (state: RootState) => state.ticTacToe.opponentChoise
   );
 
   const handleTick = (): void => {

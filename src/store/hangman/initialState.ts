@@ -4,7 +4,7 @@ type InitialStateType = {
   mistakes: number;
 };
 
-const initialState: InitialStateType = {
+export const initialState: InitialStateType = {
   level: 1,
   gameStatus: 'start',
   mistakes: 0,

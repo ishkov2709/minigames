@@ -1,6 +1,6 @@
 import { ImCross } from 'react-icons/im';
 import { FiCircle } from 'react-icons/fi';
-import { Btn, Section, Wrapper } from './Intro.styled';
+import { Btn, Wrapper } from './Intro.styled';
 import { useDispatch } from 'react-redux';
 import { selectVariant } from '../../../store/ticTacToe/ticTacToeSlice';
 import { MouseEvent } from 'react';
@@ -15,7 +15,7 @@ const Intro = () => {
   };
 
   return (
-    <Section>
+    <>
       <Wrapper>
         <Btn type="button" name="cross" onClick={handleVariant}>
           <ImCross
@@ -38,7 +38,7 @@ const Intro = () => {
           />
         </Btn>
       </Wrapper>
-    </Section>
+    </>
   );
 };
 export default Intro;

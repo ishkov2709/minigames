@@ -1,9 +1,6 @@
 import styled from '@emotion/styled';
 import { Button, Typography } from '@mui/material';
 
-export const Section = styled.section`
-  padding: 100px 0;
-`;
 export const PlayingField = styled.div`
   width: 750px;
 

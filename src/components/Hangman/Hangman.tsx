@@ -1,25 +1,22 @@
+import { useSelector } from 'react-redux';
+import GameWrapper from '../common/GameWrapper';
+import { Box, Separator, Title } from './Hangman.styled';
+import { RootState } from '../../store/store';
+import { hangmanImg } from '../../img/hangman';
 import data from './data.json';
 
-const Hangman = () => {
-  const b = [...data.map(el => el.word)];
-
-  const a = data
-    .filter(
-      (el, i, arr) =>
-        arr.indexOf(el) === b.lastIndexOf(el.word) && el.word.length <= 7
-    )
-    .sort((a, b) => a.word.length - b.word.length);
-
-  console.log(a.length);
+export const Hangman = () => {
+  const level = useSelector((state: RootState) => state.hangman.level);
+  const mistakes = useSelector((state: RootState) => state.hangman.mistakes);
 
   return (
-    <div>
-      {a?.map((el, i) => (
-        <p key={i}>
-          {'{'}"word": "{el.word}", "question": "{el.question}"{'}'},
-        </p>
-      ))}
-    </div>
+    <GameWrapper>
+      <Title variant="h1">{level} lvl</Title>
+      <Separator />
+      <Box>
+        <img src={hangmanImg[mistakes]} alt="hangman" />
+      </Box>
+    </GameWrapper>
   );
 };
 

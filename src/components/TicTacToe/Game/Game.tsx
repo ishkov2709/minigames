@@ -1,4 +1,4 @@
-import { BtnBox, BtnEnd, PlayingField, Section, WinText } from './Game.styled';
+import { BtnBox, BtnEnd, PlayingField, WinText } from './Game.styled';
 import Btn from './Btn';
 import { useEffect } from 'react';
 import { PiArrowClockwiseBold, PiArrowBendUpLeftBold } from 'react-icons/pi';
@@ -23,15 +23,23 @@ import { RootState } from '../../../store/store';
 const Game = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const variant = useSelector((state: RootState) => state.variant);
-  const ARRAY_FIELD = useSelector((state: RootState) => state.ARRAY_FIELD);
-  const exceptions = useSelector((state: RootState) => state.exceptions);
-  const playerChoise = useSelector((state: RootState) => state.playerChoise);
-  const opponentChoise = useSelector(
-    (state: RootState) => state.opponentChoise
+  const variant = useSelector((state: RootState) => state.ticTacToe.variant);
+  const ARRAY_FIELD = useSelector(
+    (state: RootState) => state.ticTacToe.ARRAY_FIELD
   );
-  const endGame = useSelector((state: RootState) => state.endGame);
-  const tickStatus = useSelector((state: RootState) => state.tickStatus);
+  const exceptions = useSelector(
+    (state: RootState) => state.ticTacToe.exceptions
+  );
+  const playerChoise = useSelector(
+    (state: RootState) => state.ticTacToe.playerChoise
+  );
+  const opponentChoise = useSelector(
+    (state: RootState) => state.ticTacToe.opponentChoise
+  );
+  const endGame = useSelector((state: RootState) => state.ticTacToe.endGame);
+  const tickStatus = useSelector(
+    (state: RootState) => state.ticTacToe.tickStatus
+  );
 
   useEffect(() => {
     if (
@@ -117,18 +125,18 @@ const Game = () => {
 
   if (endGame === 'none' || endGame === null)
     return (
-      <Section>
+      <>
         <PlayingField>
           {ARRAY_FIELD.map((_, i) => (
             <Btn key={i} id={i} />
           ))}
         </PlayingField>
-      </Section>
+      </>
     );
 
   if (endGame !== null)
     return (
-      <Section>
+      <>
         <WinText variant="h2">
           {endGame === 'draw'
             ? 'draw...'
@@ -158,7 +166,7 @@ const Game = () => {
             />
           </BtnEnd>
         </BtnBox>
-      </Section>
+      </>
     );
 };
 
