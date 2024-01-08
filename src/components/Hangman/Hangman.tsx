@@ -9,7 +9,7 @@ import {
   WordField,
 } from './Hangman.styled';
 import { RootState } from '../../store/store';
-import { hangmanImg } from '../../img/hangman';
+import { hangmanImg } from '../../img/hangman/mistakes';
 import data from './data.json';
 import {
   Dispatch,
@@ -21,11 +21,12 @@ import {
 } from 'react';
 import Keyboard from './Keyboard';
 import {
-  resetLevel,
+  setLoseStatus,
   setMistake,
   setWinStatus,
-  toNextLevel,
 } from '../../store/hangman/hangmanSlice';
+import PostGame from './PostGame';
+import keyboardLayout from './Keyboard/keyboardLayout';
 
 export type HangmanContextProps = {
   selectedLetters: string[] | null;
@@ -45,22 +46,29 @@ export const Hangman = () => {
   const [selectedLetters, setSelectedLetters] = useState<string[] | null>(null);
   const dispatch = useDispatch();
 
-  // const handleKeydown = (e: KeyboardEvent): void => {
-  //   console.log(e);
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener('keydown', handleKeydown);
-
-  //   return () => {
-  //     window.removeEventListener('keydown', handleKeydown);
-  //   };
-  // });
+  const handleKeydown = (e: KeyboardEvent): void => {
+    const code: string = e.code;
+    const letter = keyboardLayout[code as keyof typeof keyboardLayout];
+    if (letter !== undefined && gameStatus === 'start') {
+      setSelectedLetters(prev =>
+        prev !== null ? [...prev, letter] : [letter]
+      );
+    }
+  };
 
   useEffect(() => {
-    if (mistakes === 7 || selectedLetters === null) {
-      dispatch(resetLevel());
+    window.removeEventListener('keydown', handleKeydown);
+    window.addEventListener('keydown', handleKeydown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeydown);
+    };
+  });
+
+  useEffect(() => {
+    if (mistakes === 7) {
       setSelectedLetters(null);
+      dispatch(setLoseStatus());
     }
   }, [mistakes, dispatch, selectedLetters]);
 
@@ -89,26 +97,34 @@ export const Hangman = () => {
         <Title variant="h1">{level} lvl</Title>
         <Separator />
         <Box>
-          <Question>{data[level].question}</Question>
-          <img
-            src={hangmanImg[mistakes]}
-            alt="hangman"
-            style={{ marginBottom: '30px' }}
-            width={216}
-            height={216}
-          />
-          <WordField>
-            {data[level].word
-              .toUpperCase()
-              .split('')
-              .map((el, i) => (
-                <Letter key={i}>
-                  {selectedLetters?.includes(el.toLowerCase()) ? el : '     '}
-                </Letter>
-              ))}
-          </WordField>
+          {gameStatus === 'start' && (
+            <>
+              <Question>{data[level].question}</Question>
+              <img
+                src={hangmanImg[mistakes]}
+                alt="hangman"
+                style={{ marginBottom: '30px' }}
+                width={216}
+                height={216}
+              />
+              <WordField>
+                {data[level].word
+                  .toUpperCase()
+                  .split('')
+                  .map((el, i) => (
+                    <Letter key={i}>
+                      {selectedLetters?.includes(el.toLowerCase())
+                        ? el
+                        : '     '}
+                    </Letter>
+                  ))}
+              </WordField>
+            </>
+          )}
+
+          {gameStatus !== 'start' && <PostGame gameStatus={gameStatus} />}
         </Box>
-        <Keyboard />
+        {gameStatus === 'start' && <Keyboard />}
       </GameWrapper>
     </hangmanContext.Provider>
   );

@@ -9,7 +9,7 @@ const hangmanSlice = createSlice({
       state.mistakes += 1;
     },
     resetLevel: state => {
-      state.mistakes = 0;
+      state.gameStatus = 'start';
     },
     toNextLevel: state => {
       state.level += 1;
@@ -19,10 +19,19 @@ const hangmanSlice = createSlice({
       state.mistakes = 0;
       state.gameStatus = 'win';
     },
+    setLoseStatus: state => {
+      state.mistakes = 0;
+      state.gameStatus = 'lose';
+    },
   },
 });
 
 export const hangmanReducer = hangmanSlice.reducer;
 
-export const { setMistake, resetLevel, toNextLevel, setWinStatus } =
-  hangmanSlice.actions;
+export const {
+  setMistake,
+  resetLevel,
+  toNextLevel,
+  setWinStatus,
+  setLoseStatus,
+} = hangmanSlice.actions;

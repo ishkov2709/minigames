@@ -1,4 +1,4 @@
-import { BtnBox, BtnEnd, PlayingField, WinText } from './Game.styled';
+import { BtnBox, PlayingField, WinText } from './Game.styled';
 import Btn from './Btn';
 import { useEffect } from 'react';
 import { PiArrowClockwiseBold, PiArrowBendUpLeftBold } from 'react-icons/pi';
@@ -19,8 +19,9 @@ import {
 import { useNavigate } from 'react-router-dom';
 import randomizer from '../../../utils/randomizer';
 import { RootState } from '../../../store/store';
+import Button from '../../common/Button';
 
-const Game = () => {
+const Game: any = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const variant = useSelector((state: RootState) => state.ticTacToe.variant);
@@ -153,18 +154,18 @@ const Game = () => {
         </WinText>
 
         <BtnBox>
-          <BtnEnd variant="contained" type="button" onClick={handleBack}>
+          <Button onClick={handleBack}>
             <Typography component="span">Back</Typography>
             <PiArrowBendUpLeftBold size={16} />
-          </BtnEnd>
-          <BtnEnd variant="contained" type="button" onClick={hanldeRetry}>
+          </Button>
+          <Button onClick={hanldeRetry}>
             <Typography component="span">Retry</Typography>
             <PiArrowClockwiseBold
               className="retry-icon"
               size={16}
               style={{ transform: 'rotate(45deg)' }}
             />
-          </BtnEnd>
+          </Button>
         </BtnBox>
       </>
     );
