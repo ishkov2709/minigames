@@ -1,6 +1,6 @@
-import { Container } from '@mui/material';
-import { ReactNode } from 'react';
 import { Section } from './GameWrappers.styled';
+import { ReactNode } from 'react';
+import { Container } from '@mui/material';
 
 type GameWrapperProps = {
   children: ReactNode;
