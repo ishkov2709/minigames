@@ -49,7 +49,11 @@ export const Hangman = () => {
   const handleKeydown = (e: KeyboardEvent): void => {
     const code: string = e.code;
     const letter = keyboardLayout[code as keyof typeof keyboardLayout];
-    if (letter !== undefined && gameStatus === 'start') {
+    if (
+      letter !== undefined &&
+      gameStatus === 'start' &&
+      !selectedLetters?.includes(letter)
+    ) {
       setSelectedLetters(prev =>
         prev !== null ? [...prev, letter] : [letter]
       );
